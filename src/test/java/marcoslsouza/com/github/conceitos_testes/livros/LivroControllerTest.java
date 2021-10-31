@@ -31,7 +31,7 @@ import marcoslsouza.com.github.conceitos_testes.dto.LivroDTO;
 
 // Configura um objeto para fazer as requisicoes
 @AutoConfigureMockMvc
-public class LivrosControllerTest {
+public class LivroControllerTest {
 	
 	// Definir a rota. Rota definida no controller
 	static String LIVROS_API = "/api/livros";
