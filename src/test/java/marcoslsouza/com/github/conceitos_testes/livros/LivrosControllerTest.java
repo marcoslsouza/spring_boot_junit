@@ -16,6 +16,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import marcoslsouza.com.github.conceitos_testes.dto.LivroDTO;
+
 /* Teste unitario */
 
 
@@ -43,7 +45,10 @@ public class LivrosControllerTest {
 	// Primeiro teste para a requisicao POST
 	public void criarLivroTest() throws Exception {
 		
-		String json = new ObjectMapper().writeValueAsString(null);
+		LivroDTO dto = LivroDTO.builder().id(11l).autor("Arthur").titulo("As aventuras").isbn("001").build();
+		
+		// Converte o dto em JSON
+		String json = new ObjectMapper().writeValueAsString(dto);
 		
 		MockHttpServletRequestBuilder request = MockMvcRequestBuilders
 			.post(LIVROS_API)
@@ -56,9 +61,9 @@ public class LivrosControllerTest {
 			.perform(request)
 			.andExpect(MockMvcResultMatchers.status().isCreated()) // Verifica o status recebido
 			.andExpect(MockMvcResultMatchers.jsonPath("id").isNotEmpty()) // Verifica se o JSON de resposta e igual ao enviado. Verifica se o id nao esta vazio
-			.andExpect(MockMvcResultMatchers.jsonPath("titulo").value("Meu Livro"))
-			.andExpect(MockMvcResultMatchers.jsonPath("autor").value("Autor"))
-			.andExpect(MockMvcResultMatchers.jsonPath("isbn").value("12132222"));
+			.andExpect(MockMvcResultMatchers.jsonPath("titulo").value(dto.getTitulo()))
+			.andExpect(MockMvcResultMatchers.jsonPath("autor").value(dto.getAutor()))
+			.andExpect(MockMvcResultMatchers.jsonPath("isbn").value(dto.getIsbn()));
 	}
 	
 	@Test
