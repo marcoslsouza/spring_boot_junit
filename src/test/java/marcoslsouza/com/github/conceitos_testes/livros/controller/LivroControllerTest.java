@@ -1,4 +1,4 @@
-package marcoslsouza.com.github.conceitos_testes.livros;
+package marcoslsouza.com.github.conceitos_testes.livros.controller;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -59,7 +59,7 @@ public class LivroControllerTest {
 		Livro livroSalvo = Livro.builder().id(10l).autor("Arthur").titulo("As aventuras").isbn("001").build();
 		
 		// Simular a acao do LivroService->save() retornando os dados de livroSalvo
-		BDDMockito.given(service.save(Mockito.any(Livro.class)))
+		BDDMockito.given(this.service.salvar(Mockito.any(Livro.class)))
 			.willReturn(livroSalvo);
 		
 		
@@ -75,7 +75,7 @@ public class LivroControllerTest {
 			.content(json); // JSON passado
 		
 		// Fazer a requisicao
-		mvc
+		this.mvc
 			.perform(request)
 			.andExpect(MockMvcResultMatchers.status().isCreated()) // Verifica o status recebido
 			.andExpect(MockMvcResultMatchers.jsonPath("id").value(10l)) // Verifica se o JSON de resposta e igual ao enviado. Verifica se o id nao esta vazio

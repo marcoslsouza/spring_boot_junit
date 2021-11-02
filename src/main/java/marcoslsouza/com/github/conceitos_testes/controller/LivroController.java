@@ -42,7 +42,7 @@ public class LivroController {
 		// Pega DTO e passa para Livro
 		Livro entidade = this.modelMapper.map(dto, Livro.class);
 		
-		entidade = service.save(entidade);
+		entidade = service.salvar(entidade);
 		
 		/*return LivroDTO.builder()
 				.id(entidade.getId())

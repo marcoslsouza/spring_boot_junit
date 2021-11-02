@@ -4,6 +4,6 @@ import marcoslsouza.com.github.conceitos_testes.model.Livro;
 
 public interface LivroService {
 
-	Livro save(Livro any);
+	Livro salvar(Livro any);
 
 }
